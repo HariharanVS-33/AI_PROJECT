@@ -87,7 +87,7 @@ def chat(request: ChatRequest):
 
         # Append transition to qualification
         transition = (
-            "\n\n---\n\nIt sounds like you're interested in partnering with PolyMedicure! "
+            "\n\n---\n\nIt sounds like you're interested in our products or partnering with us! "
             "I'd love to connect you with our sales team. "
         )
         consent_msg = lq.CONSENT_MESSAGE

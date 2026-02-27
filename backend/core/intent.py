@@ -19,23 +19,25 @@ VALID_INTENTS = {
 CLASSIFICATION_PROMPT = """Classify the user message into EXACTLY ONE of these intents. Reply with only the intent name.
 
 Intents:
-- product_query: Asking about a medical product, specification, catalogue, or usage
+- product_query: Asking about a medical product's details, specifications, catalogue, or usage instructions
 - distributor_query: Asking about becoming a distributor, dealer, or channel partner
 - territory_query: Asking about regions, coverage areas, or geographic availability
 - pricing_query: Asking about pricing, discounts, quotes, or payment terms
-- sales_intent: Showing intent to buy, partner, or saying they want to proceed with something
+- sales_intent: Showing intent to buy, purchase, order, partner, or indicating they want to acquire a specific quantity of a product
 - general_enquiry: General greetings, company info, or miscellaneous questions
 - out_of_scope: Completely unrelated to healthcare devices or PolyMedicure
 
 Examples:
-"Tell me about your cardiology products" → product_query
-"How do I become a distributor in Kerala?" → distributor_query
-"Do you have dealers in South India?" → territory_query
-"What is the price of your IV cannulas?" → pricing_query
-"Yes, I'm interested in partnering with you" → sales_intent
-"What is your company history?" → general_enquiry
-"Tell me a joke" → out_of_scope
-"What's the weather today?" → out_of_scope
+"Tell me about your cardiology products" -> product_query
+"How do I become a distributor in Kerala?" -> distributor_query
+"Do you have dealers in South India?" -> territory_query
+"What is the price of your IV cannulas?" -> pricing_query
+"Yes, I'm interested in partnering with you" -> sales_intent
+"I want 500 units of Polycan immediately" -> sales_intent
+"I need to order some medical devices" -> sales_intent
+"What is your company history?" -> general_enquiry
+"Tell me a joke" -> out_of_scope
+"What's the weather today?" -> out_of_scope
 
 User message: "{message}"
 

@@ -32,12 +32,10 @@ def create_or_update_contact(lead_data: dict) -> str | None:
         "firstname": lead_data.get("first_name", ""),
         "lastname": lead_data.get("last_name", ""),
         "email": lead_data.get("email", ""),
-        "jobtitle": lead_data.get("job_title", ""),
         "phone": lead_data.get("phone", ""),
+        "address": lead_data.get("address", ""),
+        "company": lead_data.get("company_name", ""),
         "leadsource": "Website Chatbot",
-        "chatbot_territory": lead_data.get("territory", ""),
-        "chatbot_product_interest": lead_data.get("product_interest", ""),
-        "chatbot_monthly_volume": lead_data.get("monthly_volume", ""),
         "chatbot_consent_given": "true",
         "chatbot_session_id": lead_data.get("session_id", ""),
         "lead_qualification_status": "Qualified",
@@ -88,7 +86,7 @@ def create_or_update_company(lead_data: dict) -> str | None:
     properties = {
         "name": lead_data.get("company_name", ""),
         "industry": "HEALTHCARE",
-        "description": f"Territory: {lead_data.get('territory', '')}",
+        "address": lead_data.get("address", ""),
     }
 
     try:

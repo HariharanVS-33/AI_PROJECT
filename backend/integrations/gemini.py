@@ -82,10 +82,12 @@ def generate_simple_response(prompt: str) -> str:
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.1,
-                max_output_tokens=50,
+                max_output_tokens=100,
             ),
         )
-        return response.text.strip()
+        if response and response.text:
+            return response.text.strip()
+        return ""
     except Exception as e:
         logger.error(f"Gemini generate_simple_response error: {e}")
         return ""

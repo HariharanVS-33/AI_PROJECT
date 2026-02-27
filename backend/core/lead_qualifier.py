@@ -13,12 +13,10 @@ logger = logging.getLogger(__name__)
 FIELDS = [
     ("first_name",       "First Name",         "What's your **first name**?", True),
     ("last_name",        "Last Name",           "And your **last name**?", True),
-    ("email",            "Business Email",      "Could you share your **business email address**?", True),
-    ("company_name",     "Company",             "What's the name of your **company or organisation**?", True),
-    ("job_title",        "Role",                "What's your **job title or role**?", True),
-    ("territory",        "Territory",           "Which **region or territory** do you cover? (e.g., South India, Maharashtra, Delhi NCR)", True),
-    ("product_interest", "Product Interest",    "Which **product categories** are you interested in? (e.g., Cardiology, IV Infusion, Dialysis, Respiratory)", True),
-    ("monthly_volume",   "Monthly Volume",      "What's your **estimated monthly order volume**? *(You can skip this — just type 'skip')*", False),
+    ("email",            "Email Address",       "Could you share your **email address**?", True),
+    ("phone",            "Contact Number",      "What's your **contact number**?", True),
+    ("company_name",     "Company",             "What's the name of your **company**? *(If not applicable, just type 'skip')*", False),
+    ("address",          "Address",             "What is your **complete postal address**?", True),
 ]
 
 REQUIRED_FIELDS = [f for f in FIELDS if f[3]]
@@ -62,7 +60,13 @@ def _validate_field(field_key: str, value: str) -> tuple[bool, str]:
     if field_key == "email":
         if re.match(r"^[^\s@]+@[^\s@]+\.[^\s@]+$", value):
             return True, ""
-        return False, "That doesn't look like a valid email address. Please enter a valid **business email** (e.g., name@company.com)."
+        return False, "That doesn't look like a valid email address. Please enter a valid **email** (e.g., name@email.com)."
+    if field_key == "phone":
+        # Check if contains at least 7 digits
+        digits = re.sub(r"\D", "", value)
+        if len(digits) >= 7:
+            return True, ""
+        return False, "Please enter a valid phone number."
     if field_key == "first_name" or field_key == "last_name":
         if len(value) >= 2 and value.replace(" ", "").isalpha():
             return True, ""
@@ -212,10 +216,9 @@ def _acknowledgement(field_key: str, value: str) -> str:
         "first_name": f"Nice to meet you, **{value}**!",
         "last_name": "Got it!",
         "email": "Perfect, email noted.",
+        "phone": "Contact number saved.",
         "company_name": f"Great, **{value}** — noted!",
-        "job_title": "Excellent!",
-        "territory": "Territory noted.",
-        "product_interest": "Got it!",
+        "address": "Address noted.",
     }
     return acks.get(field_key, "Got it!")
 
