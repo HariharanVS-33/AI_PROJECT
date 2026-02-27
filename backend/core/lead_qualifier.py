@@ -4,7 +4,7 @@ States: NOT_STARTED → CONSENT_PENDING → COLLECTING → CONFIRMING → COMPLE
 """
 import re
 import logging
-from backend.integrations import hubspot
+from backend.integrations import email_service
 from backend import database as db
 
 logger = logging.getLogger(__name__)
@@ -182,12 +182,12 @@ def _handle_confirmation(session: dict, message: str) -> tuple[str, list | None]
         lead_data["session_id"] = session.get("session_id", "")
         session["lead_status"] = "COMPLETED"
 
-        # Push to HubSpot
-        hubspot_ids = hubspot.push_lead_to_hubspot(lead_data)
+        # Send Email Notification
+        email_service.send_lead_email(lead_data)
 
         # Save to SQLite
         try:
-            db.save_lead(session.get("session_id", ""), lead_data, hubspot_ids)
+            db.save_lead(session.get("session_id", ""), lead_data)
         except Exception as e:
             logger.error(f"Failed to save lead to DB: {e}")
 

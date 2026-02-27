@@ -11,9 +11,12 @@ GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 GEMINI_EMBEDDING_MODEL: str = os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
 
-# ── HubSpot ───────────────────────────────────────────────────────────────────
-HUBSPOT_PRIVATE_APP_TOKEN: str = os.getenv("HUBSPOT_PRIVATE_APP_TOKEN", "")
-HUBSPOT_BASE_URL: str = "https://api.hubapi.com"
+# ── Email Notification ────────────────────────────────────────────────────────
+SMTP_SERVER: str = os.getenv("SMTP_SERVER", "")
+SMTP_PORT: str = os.getenv("SMTP_PORT", "587")
+SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
+SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
+CUSTOMER_CARE_EMAIL: str = os.getenv("CUSTOMER_CARE_EMAIL", "")
 
 # ── Target Website ────────────────────────────────────────────────────────────
 TARGET_WEBSITE_URL: str = os.getenv("TARGET_WEBSITE_URL", "https://www.polymedicure.com")

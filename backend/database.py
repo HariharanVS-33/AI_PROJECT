@@ -76,8 +76,7 @@ def save_message(session_id: str, role: str, content: str, intent: str = None) -
     conn.close()
 
 
-def save_lead(session_id: str, lead_data: dict, hubspot_ids: dict = None) -> None:
-    hubspot_ids = hubspot_ids or {}
+def save_lead(session_id: str, lead_data: dict) -> None:
     conn = get_connection()
     conn.execute(
         """INSERT INTO leads
@@ -96,8 +95,8 @@ def save_lead(session_id: str, lead_data: dict, hubspot_ids: dict = None) -> Non
             lead_data.get("product_interest"),
             lead_data.get("monthly_volume"),
             lead_data.get("phone"),
-            hubspot_ids.get("contact_id"),
-            hubspot_ids.get("company_id"),
+            None,  # hubspot_contact_id
+            None,  # hubspot_company_id
             datetime.utcnow().isoformat(),
         ),
     )
