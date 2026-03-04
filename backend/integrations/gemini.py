@@ -97,7 +97,7 @@ def get_embedding(text: str) -> list:
     """Get a query embedding vector."""
     try:
         result = _client.models.embed_content(
-            model=GEMINI_EMBEDDING_MODEL,
+            model="models/gemini-embedding-001",
             contents=text,
             config=types.EmbedContentConfig(task_type="RETRIEVAL_QUERY"),
         )
@@ -111,7 +111,7 @@ def get_document_embedding(text: str) -> list:
     """Get a document embedding vector (for indexing)."""
     try:
         result = _client.models.embed_content(
-            model=GEMINI_EMBEDDING_MODEL,
+            model="models/gemini-embedding-001",
             contents=text,
             config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"),
         )
