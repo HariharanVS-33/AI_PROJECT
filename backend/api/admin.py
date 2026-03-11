@@ -35,7 +35,7 @@ def health():
     count = vdb.get_document_count()
     return HealthResponse(
         status="healthy",
-        kb_document_count=count,
+        kb_document_count=max(count, 0),
         kb_ready=count > 0,
     )
 

@@ -33,7 +33,7 @@ def get_document_count() -> int:
         return _get_collection().count()
     except Exception as e:
         logger.error(f"ChromaDB count error: {e}")
-        return 0
+        return -1
 
 
 def add_documents(ids: list, documents: list, embeddings: list, metadatas: list) -> None:

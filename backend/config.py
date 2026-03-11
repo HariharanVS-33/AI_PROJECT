@@ -26,8 +26,9 @@ APP_ENV: str = os.getenv("APP_ENV", "development")
 SESSION_EXPIRY_MINUTES: int = int(os.getenv("SESSION_EXPIRY_MINUTES", "30"))
 
 # ── Storage ───────────────────────────────────────────────────────────────────
-CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", "./data/chromadb")
-SQLITE_DB_PATH: str = os.getenv("SQLITE_DB_PATH", "./data/leads.db")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", os.path.join(BASE_DIR, "data", "chromadb"))
+SQLITE_DB_PATH: str = os.getenv("SQLITE_DB_PATH", os.path.join(BASE_DIR, "data", "leads.db"))
 
 # ── Retrieval ─────────────────────────────────────────────────────────────────
 RAG_TOP_K: int = 5
