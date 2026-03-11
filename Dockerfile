@@ -1,5 +1,5 @@
-# Use official Python 3.10 slim image
-FROM python:3.10-slim
+# Use official Python 3.10 slim bookworm image (has newer SQLite)
+FROM python:3.10-slim-bookworm
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1

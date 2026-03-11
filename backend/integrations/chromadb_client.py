@@ -1,6 +1,14 @@
 """
 ChromaDB vector store client — stores and retrieves knowledge base chunks.
 """
+# ── SQLite version workaround for Render/older Linux environments ──
+try:
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 import chromadb
 import os
 import logging
