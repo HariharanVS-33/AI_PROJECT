@@ -18,9 +18,13 @@ env/
 .venv/
 
 # Data
-data/
+data/leads.db*
 *.db
+!data/chromadb/*.db
 *.sqlite
+!data/chromadb/*.sqlite
+*.sqlite3
+!data/chromadb/*.sqlite3
 
 # IDE
 .vscode/
