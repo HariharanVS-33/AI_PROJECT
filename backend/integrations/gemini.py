@@ -4,7 +4,7 @@ Uses the new google-genai SDK (google.genai).
 """
 from google import genai
 from google.genai import types
-from backend.config import GEMINI_API_KEY, GEMINI_MODEL, GEMINI_EMBEDDING_MODEL
+from backend.config import GEMINI_API_KEY, GEMINI_MODEL
 import logging
 
 logger = logging.getLogger(__name__)

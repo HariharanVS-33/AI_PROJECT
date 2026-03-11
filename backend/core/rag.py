@@ -28,12 +28,12 @@ def query(user_message: str, conversation_history: list) -> dict:
     # 1. Embed the query
     query_embedding = gem.get_embedding(user_message)
     if not query_embedding:
-        return {"response": FALLBACK_RESPONSE, "context_found": False, "sources": []}
+        return {"response": gem.generate_response(conversation_history, ""), "context_found": False, "sources": []}
 
     # 2. Retrieve chunks
     chunks = vdb.search(query_embedding, n_results=5)
     if not chunks:
-        return {"response": FALLBACK_RESPONSE, "context_found": False, "sources": []}
+        return {"response": gem.generate_response(conversation_history, ""), "context_found": False, "sources": []}
 
     # 3. Filter by similarity threshold (distance < threshold means more similar)
     relevant_chunks = [c for c in chunks if c["distance"] < RAG_SIMILARITY_THRESHOLD]
